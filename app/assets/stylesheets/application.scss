@@ -1,0 +1,74 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap";
+.container{
+  width: 35%;
+  padding: 20px;
+  box-shadow: -4px -5px 19px -4px rgba(140, 157, 184, 0.52);
+  border-radius: 20px;
+  background-color: white;
+  margin-bottom: 30px;
+}
+.show-body{
+  margin-left:30px;
+}
+.btn1{
+  background-color: purple;
+  color: white;
+  font-weight: 500;
+}
+.btn:hover{
+  background-color: rgb(194, 121, 194);
+  color: white;
+}
+.log{
+  width:30%;
+}
+.btn2{
+  background-color: purple;
+  color: white;
+  font-weight: 500;
+}
+.btn:hover{
+  background-color: rgb(194, 121, 194);
+  color: white;
+}
+.butt{
+  justify-content: space-evenly;
+}
+.para{
+  margin-right:20px;
+}
+.navbar{
+  background-color:purple;
+}
+.navbar a{
+  text-decoration: none;
+  color:white;
+  font-weight: 500;
+}
+.link-in{
+  padding-left: 10px;
+}
+.notice{
+  margin-top:70px;
+}
+.alert{
+  margin-top:70px;
+}
+.error{
+  color: red;
+}

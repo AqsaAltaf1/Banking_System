@@ -1,0 +1,15 @@
+class User < ApplicationRecord
+  validates :first_name,:phone_number,:cnic,:address, presence: true
+  validates :phone_number,length: { is: 11 }
+  validates :cnic,length: { is: 13 }
+  devise :database_authenticatable, 
+  :registerable,
+  :recoverable, 
+  :rememberable, 
+  :validatable
+
+  enum role: {
+    customer: 0,
+    superadmin: 1
+  }
+end
