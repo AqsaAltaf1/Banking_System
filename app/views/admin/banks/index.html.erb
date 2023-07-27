@@ -1,0 +1,25 @@
+<%= link_to 'create bank', new_bank_path, class: 'btn btn1'%>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @banks.each do |bank| %>
+      <tr>
+        <th scope="row"><%= bank.id %></th>
+        <td><%= bank.name %></td>
+        <td><%= bank.address %></td>
+        <td><%= link_to 'detail', bank_path(bank) %> <%= link_to 'edit', edit_bank_path(bank) %>   <%= link_to 'delete', bank_path(bank),data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+          }%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,14 @@
+<div class='container log'>
+  <h2 class='text-center'>Bank</h2>
+  <div class='show-body'>
+    <p><span class='para'><b>Name:</b></span><%= @bank.name %></p>
+    <hr>
+    <p><span class='para'><b>Address:</b></span><%= @bank.address %></p> 
+  </div>
+  <div class='butt row'>
+    <%= link_to 'eidt', edit_bank_path(@bank), class: 'btn btn2 col-2'%>   <%= link_to 'delete', bank_path(@bank),data: {
+    turbo_method: :delete,
+    turbo_confirm: "Are you sure?"
+    }, class: 'btn btn2 col-2' %>
+  </div> 
+</div>

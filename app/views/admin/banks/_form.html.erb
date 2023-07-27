@@ -1,0 +1,19 @@
+<%= form_with model: [@bank] do |f| %>
+  <div class='mt-3'>
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control"  %>
+    <% @bank.errors.full_messages_for(:name).each do |message| %>
+      <div class='error'><%= message %></div>
+    <% end %>
+  </div>
+  <div class='mt-3'>
+    <%= f.label :address %>
+    <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "form-control" %>
+    <% @bank.errors.full_messages_for(:address).each do |message| %>
+      <div class='error'><%= message %></div>
+    <% end %>
+  </div>
+  <div class="actions mt-3">
+    <%= f.submit "Create", class: "btn btn1" %>
+  </div>
+<% end %>
