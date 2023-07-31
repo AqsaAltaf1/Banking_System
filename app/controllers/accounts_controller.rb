@@ -1,0 +1,62 @@
+class AccountsController < ApplicationController
+  respond_to :js, :html
+  before_action :set_account, except: %i[index new create user_accounts]
+  def index
+    if current_user.superadmin?
+      @accounts = Account.all
+    else
+      @accounts = current_user.accounts
+    end
+  end
+
+  def show
+    @account = Account.find(params[:id])
+  end
+
+  def new
+    @account = Account.new
+    @random = [*0..9,'-',*0..9].shuffle.join
+  end
+
+  def create
+    @account = Account.new(account_params)
+    if @account.save
+      redirect_to user_path(current_user)
+    else
+      flash[:notice] = "Account is already present in bank ."
+        respond_with(@account) do |format|
+        format.html { render }
+      end
+    end
+  end
+  
+  def edit
+    @account = Account.find(params[:id])
+  end
+  
+  def update
+    @account = Account.find(params[:id])
+    if @account.update(account_params)
+      redirect_to account_path(@account)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @account = Account.find(params[:id])
+    @account.destroy
+    redirect_to root_path
+  end
+
+  private
+
+  def account_params
+    params.require(:account).permit(:number, :balance, :user_id, :bank_id, :status)
+  end
+
+  def set_account
+    @account = Account.find(params[:id])
+  end
+end
+
