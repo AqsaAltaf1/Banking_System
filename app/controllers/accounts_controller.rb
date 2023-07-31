@@ -1,6 +1,7 @@
 class AccountsController < ApplicationController
   respond_to :js, :html
   before_action :set_account, except: %i[index new create user_accounts]
+  
   def index
     if current_user.superadmin?
       @accounts = Account.all
@@ -10,7 +11,6 @@ class AccountsController < ApplicationController
   end
 
   def show
-    @account = Account.find(params[:id])
   end
 
   def new
@@ -31,11 +31,9 @@ class AccountsController < ApplicationController
   end
   
   def edit
-    @account = Account.find(params[:id])
   end
   
   def update
-    @account = Account.find(params[:id])
     if @account.update(account_params)
       redirect_to account_path(@account)
     else
@@ -44,7 +42,6 @@ class AccountsController < ApplicationController
   end
 
   def destroy
-    @account = Account.find(params[:id])
     @account.destroy
     redirect_to root_path
   end

@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   scope module: 'admin' do
     resources :banks
   end
+  resources :accounts
 end
