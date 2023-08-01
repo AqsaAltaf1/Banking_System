@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
   respond_to :js, :html
-  before_action :set_account, except: %i[index new create user_accounts]
+  before_action :set_account, except: %i[index new create user_accounts bank_accounts]
   
   def index
     if current_user.superadmin?
@@ -22,10 +22,11 @@ class AccountsController < ApplicationController
     @account = Account.new(account_params)
     if @account.save
       redirect_to user_path(current_user)
+      flash[:notice] = "successfull ."
     else
       flash[:notice] = "Account is already present in bank ."
-        respond_with(@account) do |format|
-        format.html { render }
+      respond_with(@account) do |format|
+        format.html {render :new, status: :unprocessable_entity}
       end
     end
   end
@@ -44,6 +45,14 @@ class AccountsController < ApplicationController
   def destroy
     @account.destroy
     redirect_to root_path
+  end
+
+  def bank_accounts
+    @bank = Bank.find(params[:id])
+    @accounts = @bank.accounts
+    respond_to do |format|
+      format.js 
+    end
   end
 
   private

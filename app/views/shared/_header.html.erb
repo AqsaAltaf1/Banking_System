@@ -3,19 +3,29 @@
     <div class='d-flex'> 
       <% if user_signed_in? %>
         <div>
-          <% if current_user&.superadmin? %>
-            <%= link_to 'Dashboard', users_path%>
-          <% end %>
           <div class="dropdown">
             <button class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
              <%= current_user.first_name%> <%= current_user.last_name%>
             </button>
             <ul class="dropdown-menu bg-dark p-3" aria-labelledby="dropdownMenuButton1">
-              <li><%= link_to 'log out', destroy_user_session_path,data: { turbo_method: :delete} %></li>
               <li><%= link_to 'profile', user_path(current_user) %></li>
-              <li><%= link_to 'accounts', accounts_path%></li>
-              <li><%= link_to 'create account', new_account_path %></li>
-            </ul>
+              <% if current_user&.superadmin? %>
+                <li><%= link_to 'Dashboard', users_path%></li>
+                <li><%= link_to 'all bank', banks_path %></li>
+                <li><%= link_to 'all Accounts', accounts_path %></li>
+                <li><%= link_to 'transactions', transactions_path %></li>
+                <li><%= link_to 'create bank', new_bank_path %></li>
+              <% else %>  
+                <li><%= link_to 'accounts', accounts_path%></li>
+                <li><%= link_to 'create account', new_account_path %></li>
+                <li><%= link_to 'transaction', new_transaction_path %></li>
+                <% if current_user&.transactions.present? %>
+                  <li><%= link_to 'history', transactions_path %></li>
+                <% end %>
+              <% end %>
+             
+              <li><%= link_to 'log out', destroy_user_session_path,data: { turbo_method: :delete} %></li>
+            </ul>  
           </div>
         </div>  
       <% else %>

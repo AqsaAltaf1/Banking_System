@@ -1,4 +1,3 @@
-<%= link_to 'create bank', new_bank_path, class: 'btn btn1'%>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -11,7 +10,7 @@
   <tbody>
     <% @banks.each do |bank| %>
       <tr>
-        <th scope="row"><%= bank.id %></th>
+        <td scope="row"><%= bank.id %></td>
         <td><%= bank.name %></td>
         <td><%= bank.address %></td>
         <td>
