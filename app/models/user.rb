@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :accounts, dependent: :destroy
   validates :first_name,:phone_number,:cnic,:address, presence: true
   validates :phone_number,length: { is: 11 }
   validates :cnic,length: { is: 13 }

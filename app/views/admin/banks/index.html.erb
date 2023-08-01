@@ -14,10 +14,19 @@
         <th scope="row"><%= bank.id %></th>
         <td><%= bank.name %></td>
         <td><%= bank.address %></td>
-        <td><%= link_to 'detail', bank_path(bank) %> <%= link_to 'edit', edit_bank_path(bank) %>   <%= link_to 'delete', bank_path(bank),data: {
-          turbo_method: :delete,
-          turbo_confirm: "Are you sure?"
-          }%>
+        <td>
+          <%= link_to bank_path(bank) do %>
+            <%= image_tag('icons8-show-50.png',class:'logo1')%>
+          <% end %>
+          <%= link_to edit_bank_path(bank) do %>
+            <%= image_tag('icons8-edit-80.png',class:'logo1')%>
+          <% end %>
+          <%= link_to bank_path(bank),data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+            } do %>
+            <%= image_tag('icons8-delete-100.png',class:'logo1')%>
+          <% end %>
         </td>
       </tr>
     <% end %>
