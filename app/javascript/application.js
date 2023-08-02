@@ -4,4 +4,7 @@
 //= require bootstrap
 import "@hotwired/turbo-rails"
 import "controllers"
-import "jquery";
+import "jquery"
+import * as bootstrap from "bootstrap"
+
+window.bootstrap = bootstrap
