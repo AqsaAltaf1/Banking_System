@@ -1,0 +1,38 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Number</th>
+      <th scope="col">Balance</th>
+      <th scope="col">Status</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @accounts.each do |account| %>
+      <tr>
+        <th scope="row"><%= account.id %></th>
+        <td><%= account.number %></td>
+        <td><%= account.balance %></td>
+        <td><%= account.status %></td>
+        <td><%= account.bank_id %></td>
+        <td>
+          <%= link_to account_path(account) do %>
+            <%= image_tag('icons8-show-50.png',class:'logo1')%>
+          <% end %>
+          <% if current_user&.superadmin? %>
+            <%= link_to edit_account_path(account) do %>
+              <%= image_tag('icons8-edit-80.png',class:'logo1')%>
+            <% end %>
+            <%= link_to account_path(account),data: {
+              turbo_method: :delete,
+              turbo_confirm: "Are you sure?"
+              } do %>
+              <%= image_tag('icons8-delete-100.png',class:'logo1')%>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

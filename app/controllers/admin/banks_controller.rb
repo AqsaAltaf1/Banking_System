@@ -30,7 +30,7 @@ module Admin
       if @bank.update(bank_params)
         redirect_to banks_path
       else
-        render :new
+        render :edit
       end
     end
     

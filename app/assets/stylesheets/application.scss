@@ -72,3 +72,23 @@
 .error{
   color: red;
 }
+select{
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  border-color: 1px solid #ced4da;
+  border: 1px solid #ced4da;
+  background: white
+}
+.logo1{
+  width: 30px;
+  height: 30px;
+}
+#dropdownMenuButton1{
+  background-color: purple;
+  color: white;
+  border-width: 0;
+}
+.dropdown-menu{
+  justify-content: left;
+}

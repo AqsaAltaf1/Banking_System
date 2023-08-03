@@ -14,15 +14,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    @user = User.find(params[:id])
+  end
 
-  # PUT /resource
-  # def update
-  #   super
-  # end
+	def update
+    @user = User.find(params[:id])
+		if @user.update(user_params)
+			redirect_to user_path(@user)
+		else
+			render :edit
+		end
+	end
 
   # DELETE /resource
   # def destroy
@@ -44,6 +47,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone_number, :cnic, :address, :role])
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :phone_number, :cnic, :address, :role])
+  end
+
+  def update_resource(resource, params)
+    resource.update_without_password(params)
   end
 
   # If you have extra params to permit, append them to the sanitizer.
