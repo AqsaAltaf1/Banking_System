@@ -1,0 +1,1 @@
+$("#transaction_reciever_id").html("<%= escape_javascript options_for_select(@accounts.collect { |d| [d.number, d.id] }) %>");

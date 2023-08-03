@@ -10,4 +10,6 @@ Rails.application.routes.draw do
     resources :banks
   end
   resources :accounts
+  resources :transactions
+  patch 'accounts/bank_accounts/:id' => 'accounts#bank_accounts', :as => 'bank_accounts' 
 end

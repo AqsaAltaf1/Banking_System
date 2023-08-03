@@ -1,5 +1,6 @@
 class Account < ApplicationRecord
   before_create :check_account
+  has_many :transactions, dependent: :destroy
   belongs_to :user
   belongs_to :bank
   validates :number, :bank_id, presence: true
@@ -13,7 +14,6 @@ class Account < ApplicationRecord
    
   def check_account
     throw :abort if self.user.accounts.any? { |item| item[:bank_id] == self.bank_id }
-    debugger
   end
   
 end
