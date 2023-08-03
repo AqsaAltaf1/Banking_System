@@ -1,0 +1,46 @@
+<%= form_with model: [@transaction] do |f| %>
+  <%= f.hidden_field :user_id,value: current_user.id %>
+  <div class='mt-3'>
+    <%= f.label :account %>
+    <%= f.select :account_id, current_user.accounts.all.collect { |p| [ p.number, p.id ] }, include_blank: true %>
+    <% @transaction.errors.full_messages_for(:account_id).each do |message| %>
+      <div class='error'><%= message %></div>
+    <% end %>
+  </div>
+  <div class='mt-3'>
+    <%= f.label :choose_bank %>
+    <%= f.select :bank_id, Bank.all.collect { |p| [ p.name, p.id ] } %>
+    <% @transaction.errors.full_messages_for(:bank_id).each do |message| %>
+      <div class='error'><%= message %></div>
+    <% end %>
+  </div>
+  <div class='mt-3'>
+    <%= f.label :reciever %>
+    <%= f.select :reciever_id, options_for_select({})%>
+    <% @transaction.errors.full_messages_for(:reciever_id).each do |message| %>
+      <div class='error'><%= message %></div>
+    <% end %>
+  </div>
+  <div class='mt-3'>
+    <%= f.label :amount %>
+    <%= f.number_field :amount, autofocus: true, autocomplete: "amont", class: "form-control" %>
+    <% @transaction.errors.full_messages_for(:amount).each do |message| %>
+      <div class='error'><%= message %></div>
+    <% end %>
+  </div>
+  <div class="actions mt-3">
+    <%= f.submit "Create", class: "btn btn1" %>
+  </div>
+<% end %>
+<script>
+  document.getElementById('transaction_bank_id').addEventListener("change", function(){
+    var a = document.getElementById('transaction_bank_id').value
+    console.log(a);
+    $.ajax({
+    url: "/accounts/bank_accounts/"+ a,
+    type: "Patch",
+    data: {id: a}
+    });
+  });
+</script>
+  
