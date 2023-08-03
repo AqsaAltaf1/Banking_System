@@ -1,9 +1,10 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
+import { Modal } from "bootstrap";
 
 // Connects to data-controller="bs-modal"
 export default class extends Controller {
   connect() {
-    this.modal=new bootstrap.Modal(this.element)
+    this.modal=new Modal(this.element)
     this.modal.show()
   }
   disconnect(){
