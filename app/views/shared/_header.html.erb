@@ -1,8 +1,20 @@
-<nav class="navbar fixed-top ">
+<nav class="navbar fixed-top">
   <div class="container-fluid contain">
+    <div class='d-flex'>
+      <div>
+        <%= link_to root_path do %>
+          <%= image_tag('icons8-bank-64.png', class:'logo')%>
+        <% end %>  
+      </div>
+      <div>
+        <%= link_to root_path do %>
+          <p class='logo1'>Banking System</p>
+        <% end %>  
+      </div>
+    </div>
     <div class='d-flex'> 
       <% if user_signed_in? %>
-        <div>
+        <div class='d-flex'>
           <div class="dropdown">
             <button class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
              <%= current_user.first_name%> <%= current_user.last_name%>
@@ -24,14 +36,15 @@
                   <li><%= link_to 'history', transactions_path %></li>
                 <% end %>
               <% end %>
-             
               <li><%= link_to 'log out', destroy_user_session_path,data: { turbo_method: :delete} %></li>
             </ul>  
           </div>
-        </div>  
+        </div> 
       <% else %>
-        <%= link_to 'Register', new_user_registration_path %>
-        <%= link_to 'Sign in', new_user_session_path,class: 'link-in' %>
+        <div class='d-flex'>
+          <%= link_to 'Register', new_user_registration_path %>
+          <%= link_to 'Sign in', new_user_session_path,class: 'link-in' %>
+        </div>
       <% end %>  
     </div> 
   </div>
