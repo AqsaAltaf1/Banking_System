@@ -1,18 +1,24 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-   before_action :configure_sign_up_params
+   before_action :configure_sign_up_params, except: %i[new create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    @user  =  User.new
+  end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to root_path
+      UserMailer.example(User.new(email: 'newuser@gmail.com')).deliver
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
 
   def edit
     @user = User.find(params[:id])
@@ -53,6 +59,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.update_without_password(params)
   end
 
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :phone_number, :cnic, :address, :role, :email,:password)
+  end
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
   #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
