@@ -15,6 +15,6 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
-    <%= turbo_frame_tag 'remote_modal'%>
+    <%= turbo_frame_tag 'form_modal', target: '_top'%>
   </body>
 </html>
