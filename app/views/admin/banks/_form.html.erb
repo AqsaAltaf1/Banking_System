@@ -4,8 +4,8 @@
     <%= form.label :name, style: "display: block", class: "form-label" %>
     <%= form.text_field :name, class: "form-control" %>
     <div style="color: red">
-      <% if item.errors.include?(:name) %>
-          <% item.errors.full_messages_for(:name).each do |error_message| %>
+      <% if bank.errors.include?(:name) %>
+          <% bank.errors.full_messages_for(:name).each do |error_message| %>
             <%= error_message %>.
           <% end %>
       <% end %>
@@ -16,8 +16,8 @@
     <%= form.label :address, style: "display: block", class: "form-label" %>
     <%= form.text_area :address, class: "form-control" %>
     <div style="color: red">
-      <% if item.errors.include?(:address) %>
-          <% item.errors.full_messages_for(:address).each do |error_message| %>
+      <% if bank.errors.include?(:address) %>
+          <% bank.errors.full_messages_for(:address).each do |error_message| %>
             <%= error_message %>.
           <% end %>
       <% end %>
