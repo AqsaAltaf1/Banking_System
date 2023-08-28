@@ -1,22 +1,30 @@
-<%= form_with model: [@bank] do |f| %>
-  <div class="modal-body">
-    <div class='mt-3'>
-      <%= f.label :name %>
-      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control"  %>
-      <% @bank.errors.full_messages_for(:name).each do |message| %>
-        <div class='error'><%= message %></div>
-      <% end %>
-    </div>
-    <div class='mt-3'>
-      <%= f.label :address %>
-      <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "form-control" %>
-      <% @bank.errors.full_messages_for(:address).each do |message| %>
-        <div class='error'><%= message %></div>
+<%= form_with(model: bank) do |form| %>
+
+  <div class="mb-3">
+    <%= form.label :name, style: "display: block", class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+    <div style="color: red">
+      <% if item.errors.include?(:name) %>
+          <% item.errors.full_messages_for(:name).each do |error_message| %>
+            <%= error_message %>.
+          <% end %>
       <% end %>
     </div>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    <%= f.submit "Create", class: "btn btn1",data: {action: "click->bs-modal#submitEnd"} %>
-  </div>  
+
+  <div class="mb-3">
+    <%= form.label :address, style: "display: block", class: "form-label" %>
+    <%= form.text_area :address, class: "form-control" %>
+    <div style="color: red">
+      <% if item.errors.include?(:address) %>
+          <% item.errors.full_messages_for(:address).each do |error_message| %>
+            <%= error_message %>.
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit "Save", class: "btn btn1 btn-block" %>
+  </div>
 <% end %>

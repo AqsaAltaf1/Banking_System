@@ -1,3 +1,5 @@
-<%= render "form_modal" do %>
-  <%= render "form" %>
+<%= render "remote_modal", title: "New bank" do %>
+
+  <%= render "form", bank: @bank %>
+
 <% end %>
